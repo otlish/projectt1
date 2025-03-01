@@ -12,7 +12,7 @@ export default function Home() {
 
       {/* hero section  */}
       <section>
-      <div className="relative  mb-5 ml-5 mr-5 ">
+      <div className="relative  ml-5 mr-5 ">
         <a href=""><Image src="/images/suru.png" alt="Example image" width={1500} height={0} className="rounded-md w-[1500px] h-[600px] object-cover" /></a>
         <div className="absolute ml-16 top-60">
            <p className="mt-8 mb-5 text-sm font-normal text-white">TRUSTED BY PROFESSIONAL ATHELETES</p>
@@ -28,47 +28,8 @@ export default function Home() {
         <p className="my-10 font-bold text-black text-7xl">BUILD FROM THE GROUND UP</p>
       </section>
 
-<section>
-      {/* endurace image inside picture */}
-      <div className="relative flex justify-between gap-5 mx-5 mt-5 mb-8">
-        <div>
-        <a href=""><Image src="/images/enduaraw.webp" alt="Example image" width={350} height={0} className="rounded-md w-[350px] h-[460px] object-cover " /></a>
-        <div className="absolute top-64 left max-w-60 ml-7">
-           <p className="mb-5 text-3xl font-bold text-white">Endurance</p>
-        <p className="text-sm text-white">Explore RAW Nutrition's Endurance Collection, ideal for endurance athletes and individuals pushing their limits during workouts. This collection includes...</p></div>
-        </div>
-        {/* first component with price */}
-        <div>
-        <a href=""><Image src="/images/rawglasses.webp" alt="Example image" width={335} height={470} className="rounded-md w-[320px] h-[320px] object-cover " /></a> 
-        <div className="text-center">
-          <p className="font-semibold">Endurance Sunglasses</p>
-          <p className="text-xs font-thin">Sleek and Ergonomic Design</p>
-          <p>$27.99</p>
-        </div>
-         {/* second component with price */}
-        </div>
-        <div>
-        <a href=""><Image src="/images/rawbottle.webp" alt="Example image" width={335} height={470} className="rounded-md w-[320px] h-[320px] object-cover " /></a> 
-        <div className="text-center">
-          <p className="font-semibold">RAW Fly Elite Sport Bottle</p>
-          <p>$27.99</p>
-        </div>
-         {/* third component with price */}
-        </div>
-        <div>
-        <a href=""><Image src="/images/cbum.webp" alt="Example image" width={335} height={470} className="rounded-md w-[320px] h-[300px] object-cover " /></a> 
-        <div className="text-center">
-          <p className="font-semibold">Endurance Sunglasses</p>
-          <p className="text-xs font-thin">Sleek and Ergonomic Design</p>
-          <p>$27.99</p>
-        </div>
-        </div>
-        
-      </div>
-    </section>
 
-
-
+  
       {/* merch big small box 1  */}
       <section>
       <div className="relative flex mr-5">
@@ -108,7 +69,7 @@ export default function Home() {
         </div>
      </div>
       </section>
-      {/* add to cart and paypal */}
+      {/* add to cart and khalti */}
       <section>
         <div className="bg-zinc-100 mx-5 flex justify-center items-center gap-28 relative h-[550px]">
         <div>

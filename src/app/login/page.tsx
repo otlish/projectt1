@@ -1,56 +1,81 @@
-import Link from "next/link";
-// import "./login.css"
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+
 export default function Login() {
-    return(
-        // kushal ko login 
-    <div className="mt-32">
-          <div className="flex flex-col items-center mt-16">
-        <h1 className="font-bold text-3xl font-sans text-gray-900 mb-2">LOGIN</h1>
-        <div className="flex flex-col w-[420px] mt-5">
-          <label className="text-sm font-medium text-gray-700">Email</label>
-          <input
-            type="email"
-            className="w-full h-12 border border-gray-300 px-3 mt-2"
-          />
-        </div>
-        <div className="flex flex-col w-[420px] mt-5">
-          <label className="text-sm font-medium text-gray-700">Password</label>
-          <input
-            type="password"
-            className="w-full h-12 border border-gray-300 px-3 mt-2 text-xs"
-            placeholder="Forgot Your Password?"
-          />
-        </div>
-        <div className="flex justify-between items-center w-[420px] mt-5">
-          <button className="bg-orange-600 text-white w-[110px] h-[43px] border border-solid border-transparent hover:bg-gray-900">
-            Sign in
-          </button>
-          <a
-            href="/signup"
-            className="text-sm underline text-gray-700 hover:text-gray-900"
-          >
-            Create Account
-          </a>
-        </div>
-      </div>
-        {/* maile add gareko components */}
-      <div className="flex justify-between mt-24 ml-12 mb-12 mr-20">
-        <div>
-            <Image src="/images/loginimg.png" alt="Example image" width={700} height={0} className="rounded-md w-[700px] h-[700px] object-contain " />
-            </div>
-            <div className="flex justify-center items-center flex-col">
-                <div className="flex">
-                    <p className="font-light text-3xl mr-3">WHY</p>
-                    <p className="font-bold text-3xl">CREATE AN ACCOUNT?</p>
-                </div>
-                <p className="mt-5">Because you can view all your past orders, profile information, & saved addresses.</p>
-                <p className="mt-5">When you log in, the details stored in the account are auto-filled during checkout</p>
-                <p>for a faster checkout experience!</p>
-                <p className="mt-5 font-semibold">No more missing drops and merch selling out before you can check out!</p>
-            </div>
-      </div>
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const validatePassword = (password: string) => {
+    return /^(?=.*[A-Z])(?=.*\W).{9,}$/.test(password); // Capital letter + Symbol + >8 chars
+  };
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!email.includes("@")) {
+      setError("Invalid email format.");
+      return;
+    }
+    if (!validatePassword(password)) {
+      setError("Password must start with a capital letter, contain a symbol, and be longer than 8 characters.");
+      return;
+    }
+
+    // Fetch user from localStorage
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      if (user.email === email && user.password === password) {
+        // Simulate login success
+        localStorage.setItem("loggedInUser", JSON.stringify(user));
+        router.push("/login2"); // Redirect to My Account page
+      } else {
+        setError("Invalid email or password.");
+      }
+    } else {
+      setError("No user found. Please sign up first.");
+    }
+  };
+
+  return (
+    <div className="mt-32 flex flex-col items-center">
+      <h1 className="font-bold text-3xl text-gray-900 mb-2">LOGIN</h1>
+      <form onSubmit={handleLogin} className="flex flex-col w-[420px] mt-5">
+        <label className="text-sm font-medium text-gray-700">Email</label>
+        <input
+          type="email"
+          className="w-full h-12 border border-gray-300 px-3 mt-2"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <label className="text-sm font-medium text-gray-700 mt-5">Password</label>
+        <input
+          type="password"
+          className="w-full h-12 border border-gray-300 px-3 mt-2"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+        <button
+          type="submit"
+          className="bg-orange-600 text-white w-[110px] h-[43px] mt-5 hover:bg-gray-900"
+        >
+          Sign in
+        </button>
+        <button
+          type="button"
+          className="underline"
+          onClick={() => router.push("/signup")}
+        >
+          Create Account
+        </button>
+      </form>
     </div>
-      
-    );
+  );
 }
